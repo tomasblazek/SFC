@@ -3,13 +3,12 @@ package sfc.rce.net;
 import java.util.ArrayList;
 
 public class NeuronHidden {
-    private ArrayList<Integer> weightVector;
-    private Double innerPotential;
+    private ArrayList<Double> weightVector;
+
     private Double radius;
     private String resultClass;
 
     public NeuronHidden(){
-        innerPotential = 0.0;
     }
 
     public void setResultClass(String str){
@@ -20,7 +19,7 @@ public class NeuronHidden {
         return resultClass;
     }
 
-    public void setWeights(ArrayList<Integer> in){
+    public void setWeights(ArrayList<Double> in){
         weightVector = in;
     }
 
@@ -36,10 +35,10 @@ public class NeuronHidden {
         radius = ratio * radius;
     }
 
-    public Double calculateInnerPotential(ArrayList<Integer> inputVector){
+    public Double calculateInnerPotential(ArrayList<Double> inputVector){
         Double result = 0.0;
-        Integer input;
-        Integer weight;
+        Double input;
+        Double weight;
         for ( int i = 0; i < inputVector.size(); i++){
             input = inputVector.get(i);
             weight = weightVector.get(i);
@@ -47,11 +46,7 @@ public class NeuronHidden {
         }
 
         result = Math.sqrt(result);
-        innerPotential = result;
         return result;
     }
 
-    public Double getInnerPotential() {
-        return innerPotential;
-    }
 }

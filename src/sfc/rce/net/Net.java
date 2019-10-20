@@ -14,7 +14,16 @@ public class Net {
         rMax = maxRadius;
     }
 
-    private void addHiddenNeuron (ArrayList<Integer> inputVector, String resultClass){
+
+//    public String runNet(ArrayList<>)
+//
+//
+//    public String runNet(){
+//
+//    }
+
+
+    private void addHiddenNeuron (ArrayList<Double> inputVector, String resultClass){
         countOfNeuronsHidden++;
         NeuronHidden neuronHidden = new NeuronHidden();
         neuronHidden.setWeights(inputVector);
@@ -31,13 +40,13 @@ public class Net {
         neuronOut.addInput(neuronHidden);
     }
 
-    public void trainNet(ArrayList<ArrayList<Integer>> in){
+    public void trainNet(ArrayList<ArrayList<Double>> in){
         Boolean modif = false;
         Boolean hit = false; // Indicator of hit
         Integer k = 0; // Index of neuron in net hidden layer
 
 
-        for (ArrayList<Integer> inputVector : in) {
+        for (ArrayList<Double> inputVector : in) {
             hit = false;
             k = 0;
 
