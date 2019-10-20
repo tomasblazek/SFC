@@ -14,6 +14,10 @@ public class NeuronOut {
         inputNeurons.add(n);
     }
 
+    public ArrayList<NeuronHidden> getInputNeurons(){
+        return inputNeurons;
+    }
+
     public String getResultClass(){
         return resultClass;
     }

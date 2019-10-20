@@ -15,12 +15,18 @@ public class Net {
     }
 
 
-//    public String runNet(ArrayList<>)
-//
-//
-//    public String runNet(){
-//
-//    }
+    public String runNet(ArrayList<Double> inputVector){
+        for (NeuronOut neuronOut : neuronsOut){
+            for (NeuronHidden neuronInput : neuronOut.getInputNeurons()){
+                Double innerPotential = neuronInput.calculateInnerPotential(inputVector);
+                if (innerPotential <= neuronInput.getRadius()) {
+                    return neuronOut.getResultClass();
+                }
+            }
+        }
+
+        return null;
+    }
 
 
     private void addHiddenNeuron (ArrayList<Double> inputVector, String resultClass){
@@ -40,17 +46,18 @@ public class Net {
         neuronOut.addInput(neuronHidden);
     }
 
-    public void trainNet(ArrayList<ArrayList<Double>> in){
+    public void trainNet(ArrayList<ArrayList<Double>> in, ArrayList<String> results){
         Boolean modif = false;
         Boolean hit = false; // Indicator of hit
         Integer k = 0; // Index of neuron in net hidden layer
-
+        Integer p = 0; // Index of input vector
 
         for (ArrayList<Double> inputVector : in) {
             hit = false;
             k = 0;
 
-            String resultClass = (inputVector.get(inputVector.size() - 1)).toString();
+
+            String resultClass = results.get(p);
 
             if ((k + 1) > countOfNeuronsHidden) {
                 addHiddenNeuron(inputVector, resultClass);
@@ -63,7 +70,7 @@ public class Net {
                         if (neuronHidden.getResultClass().equals(resultClass)){
                             hit = true;
                         } else {
-                            neuronHidden.reduceRadius(0.5);
+                            neuronHidden.reduceRadius(0.8);
                             modif = true;
                         }
                     }
@@ -75,10 +82,11 @@ public class Net {
                 }
 
             }
+            p++;
         }
 
         if (modif){
-            trainNet(in);
+            trainNet(in, results);
         }
 
     }
