@@ -5,17 +5,19 @@ import sfc.rce.net.Dataset;
 import sfc.rce.net.Net;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Main {
 
     public static void main(String[] args) {
-	    String fileName = "T:\\VUT\\VUT\\2MIT\\SFC\\projekt\\SFC\\dataset\\test.txt";
+	    String fileNameTrainingSet = "T:\\VUT\\VUT\\2MIT\\SFC\\projekt\\SFC\\dataset\\balance-scale2.data";
+        String fileNameTestingSet = "T:\\VUT\\VUT\\2MIT\\SFC\\projekt\\SFC\\dataset\\balance-scale2-testing.data";
 
         String data= null;
         try {
-            data = Reader.readString(fileName);
+            data = Reader.readString(fileNameTrainingSet);
         } catch (IOException e) {
-            System.err.println("Error: Reading file " + fileName + " failed!\n");
+            System.err.println("Error: Reading file " + fileNameTrainingSet + " failed!\n");
             System.exit(1);
         }
 
@@ -23,16 +25,42 @@ public class Main {
         try {
             dataset = Reader.stringToDataset(data);
             if (dataset == null){
-                System.err.println("Error: Reading file " + fileName + " failed!\n");
+                System.err.println("Error: Reading file " + fileNameTrainingSet + " failed!\n");
                 System.exit(1);
             }
         } catch (NumberFormatException e) {
-            System.err.println("Error: While parsing dataset from file \"" + fileName + "\" bad format!\n");
+            System.err.println("Error: While parsing dataset from file \"" + fileNameTrainingSet + "\" bad format!\n");
             System.exit(1);
         }
 
         Net net = new Net(3.0);
         net.trainNet(dataset.trainingSet, dataset.resultVector);
-        System.out.println(data);
+
+        try {
+            data = Reader.readString(fileNameTestingSet);
+        } catch (IOException e) {
+            System.err.println("Error: Reading file " + fileNameTestingSet + " failed!\n");
+            System.exit(1);
+        }
+
+        try {
+            dataset = Reader.stringToDataset(data);
+            if (dataset == null){
+                System.err.println("Error: Reading file " + fileNameTestingSet + " failed!\n");
+                System.exit(1);
+            }
+        } catch (NumberFormatException e) {
+            System.err.println("Error: While parsing dataset from file \"" + fileNameTestingSet + "\" bad format!\n");
+            System.exit(1);
+        }
+
+        ArrayList<String> results =  net.runNetMultiple(dataset.trainingSet);
+
+        for (int i = 0; i < results.size(); i++){
+            System.out.print("" + i + ") ");
+            System.out.print(results.get(i));
+            System.out.print(" should be:");
+            System.out.println(dataset.resultVector.get(i));
+        }
     }
 }

@@ -15,7 +15,16 @@ public class Net {
     }
 
 
-    public String runNet(ArrayList<Double> inputVector){
+    public ArrayList<String> runNetMultiple(ArrayList<ArrayList<Double>> inputVectors){
+        ArrayList<String> results = new ArrayList<String>();
+
+        for (ArrayList<Double> inputVector : inputVectors) {
+            results.add(runNetSingle(inputVector));
+        }
+        return results;
+    }
+
+    public String runNetSingle(ArrayList<Double> inputVector){
         for (NeuronOut neuronOut : neuronsOut){
             for (NeuronHidden neuronInput : neuronOut.getInputNeurons()){
                 Double innerPotential = neuronInput.calculateInnerPotential(inputVector);
@@ -27,7 +36,6 @@ public class Net {
 
         return null;
     }
-
 
     private void addHiddenNeuron (ArrayList<Double> inputVector, String resultClass){
         countOfNeuronsHidden++;
