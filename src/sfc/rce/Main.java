@@ -1,5 +1,6 @@
 package sfc.rce;
 
+import sfc.rce.io.Printer;
 import sfc.rce.io.Reader;
 import sfc.rce.net.Dataset;
 import sfc.rce.net.Net;
@@ -56,17 +57,6 @@ public class Main {
 
         ArrayList<String> results =  net.runNetMultiple(dataset.trainingSet);
 
-        for (int i = 0; i < results.size(); i++){
-            if (!results.get(i).equals(dataset.resultVector.get(i))) {
-                System.out.print("" + i + ") ");
-                System.out.print(results.get(i));
-                System.out.print(" should be:");
-                System.out.println(dataset.resultVector.get(i));
-            } else {
-                System.out.print("" + i + ") ");
-                System.out.print(results.get(i));
-                System.out.print(" is correct\n");
-            }
-        }
+        Printer.printResults(results, dataset);
     }
 }
