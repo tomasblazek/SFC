@@ -6,6 +6,7 @@ public class Net {
     private ArrayList<NeuronHidden> neuronsHidden = new ArrayList<NeuronHidden>();
     private ArrayList<NeuronOut> neuronsOut = new ArrayList<NeuronOut>();
     private Double rMax;
+    private Double reduceRatio = 0.9;
 
     private Integer countOfNeuronsHidden = 0;
     private Integer countofNeuronsOut = 0;
@@ -78,7 +79,7 @@ public class Net {
                         if (neuronHidden.getResultClass().equals(resultClass)){
                             hit = true;
                         } else {
-                            neuronHidden.reduceRadius(0.8);
+                            neuronHidden.reduceRadius(reduceRatio);
                             modif = true;
                         }
                     }
