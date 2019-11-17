@@ -6,8 +6,35 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 public class Reader {
+
+    public static ArrayList<Double> getUserInput() throws NoSuchElementException {
+        Scanner input = new Scanner(System.in);
+        String line = "'missing input'";
+        String[] messages = {"Set left weight:\n",
+                             "Set left distance:\n",
+                             "Set right weight:\n",
+                             "Set right distance:\n"};
+
+        ArrayList<Double> inVector = new ArrayList<Double>();
+
+        for (int i = 0; i < messages.length; i++){
+            try {
+                System.out.print(messages[i]);
+                line = input.nextLine();
+                inVector.add(Double.parseDouble(line));
+            } catch (NumberFormatException e){
+                System.err.println("Error: Invalid value of " + line + "! Should be number.\n");
+                i--;
+            }
+        }
+
+        return inVector;
+    }
+
 
     public static String readString(String fileName) throws IOException {
         String data = "";
