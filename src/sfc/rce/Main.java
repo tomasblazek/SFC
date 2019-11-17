@@ -11,8 +11,8 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
-	    String fileNameTrainingSet = "T:\\VUT\\VUT\\2MIT\\SFC\\projekt\\SFC\\dataset\\balance-scale2.data";
-        String fileNameTestingSet = "T:\\VUT\\VUT\\2MIT\\SFC\\projekt\\SFC\\dataset\\balance-scale2-testing.data";
+	    String fileNameTrainingSet = "T:\\VUT\\VUT\\2MIT\\SFC\\projekt\\SFC\\dataset\\balance-scale-training.data";
+        String fileNameTestingSet = "T:\\VUT\\VUT\\2MIT\\SFC\\projekt\\SFC\\dataset\\balance-scale-validation.data";
 
         String data= null;
         try {
@@ -56,7 +56,7 @@ public class Main {
         }
 
         ArrayList<String> results =  net.runNetMultiple(dataset.trainingSet);
-
         Printer.printResults(results, dataset);
+
     }
 }

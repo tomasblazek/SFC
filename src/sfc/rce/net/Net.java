@@ -15,6 +15,11 @@ public class Net {
         rMax = maxRadius;
     }
 
+    public Net(Double maxRadius, Double rRatio){
+        rMax = maxRadius;
+        reduceRatio = rRatio;
+    }
+
 
     public ArrayList<String> runNetMultiple(ArrayList<ArrayList<Double>> inputVectors){
         ArrayList<String> results = new ArrayList<String>();
@@ -97,7 +102,6 @@ public class Net {
         if (modif){
             trainNet(in, results);
         }
-
     }
 
     private NeuronOut getNeuronOut(String classResult){
