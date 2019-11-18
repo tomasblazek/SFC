@@ -5,6 +5,27 @@ import sfc.rce.net.Dataset;
 import java.util.ArrayList;
 
 public class Printer {
+
+    public static void printHelp() {
+        System.out.print("Application for SFC implementing RCE neural network by Tomáš Blažek (xblaze31)\n");
+        System.out.print("Usage: sfc-rce.jar [-t <training_set>][-v <training_set>][-R <max_radius>][-r <decrease_ratio>]\n\n");
+        System.out.print("Options:\n");
+        System.out.print("-t\tDefine training set of neural network\n");
+        System.out.print("-v\tDefine validation set of neural network\n");
+        System.out.print("-R\tSet max radius value of neuron RCE neural network\n");
+        System.out.print("-r\tSet decrease ratio of radius. Should be from interval (0,1)\n");
+    }
+
+    public static void printResult(String result){
+        if (result == null){
+            result = "Unknown";
+        }
+
+        System.out.print("__________________________\n");
+        System.out.print("     Result: " + result + "\n");
+        System.out.print("__________________________\n\n");
+    }
+
     public static void printResults(ArrayList<String> results, Dataset dataset){
         int correct = 0;
         int incorrect = 0;

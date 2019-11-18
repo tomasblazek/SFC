@@ -3,8 +3,8 @@
         <target name="clean">
                 <delete dir="build" />
                 <mkdir dir="build" />
-                <delete dir="doc"/>
-                <mkdir dir="doc"/>
+                <delete dir="doc/program"/>
+                <mkdir dir="doc/program"/>
                 <delete file="sfc-rce.jar"/>
         </target>
 
@@ -21,12 +21,11 @@
                                 <attribute name="Main-Class" value="sfc.rce.Main"/>
                         </manifest>
                 </jar>
-            <javadoc packagenames="sfc" sourcepath="src/sfc" destdir="doc">
-                <fileset dir="src/sfc">
-                    <include name="**" />
-                </fileset>
-            </javadoc>
-
+                <javadoc packagenames="sfc" sourcepath="src/sfc" destdir="doc/program">
+                        <fileset dir="src/sfc">
+                            <include name="**" />
+                        </fileset>
+                </javadoc>
         </target>
 
         <target name="run" depends="compile">
