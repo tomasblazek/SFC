@@ -1,0 +1,40 @@
+<project name="sfc-rce" default="compile" basedir=".">
+
+        <target name="clean">
+                <delete dir="build" />
+                <mkdir dir="build" />
+                <delete dir="doc"/>
+                <mkdir dir="doc"/>
+                <delete file="sfc-rce.jar"/>
+        </target>
+
+        <target name="compile" depends="clean">
+                <javac srcdir="src" destdir="build" includeantruntime="false">
+                        <classpath>
+                                <fileset dir="lib">
+                                        <include name="*.jar"/>
+                                </fileset>
+                        </classpath>
+                </javac>
+                <jar destfile="sfc-rce.jar" basedir="build" update="true">
+                        <manifest>
+                                <attribute name="Main-Class" value="sfc.rce.Main"/>
+                        </manifest>
+                </jar>
+            <javadoc packagenames="sfc" sourcepath="src/sfc" destdir="doc">
+                <fileset dir="src/sfc">
+                    <include name="**" />
+                </fileset>
+            </javadoc>
+
+        </target>
+
+        <target name="run" depends="compile">
+                <java classname="sfc.rce.Main" fork="true">
+                        <classpath>
+                                <path location="sfc-rce.jar"/>
+                        </classpath>
+                </java>
+        </target>
+
+</project>
