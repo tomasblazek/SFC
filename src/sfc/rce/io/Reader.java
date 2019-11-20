@@ -1,3 +1,8 @@
+/**
+ *  Project RCE neural network for SFC subject
+ *  Author: xblaze31
+ */
+
 package sfc.rce.io;
 
 import sfc.rce.net.Dataset;
@@ -9,8 +14,17 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+/**
+ * Handle inputs.
+ */
 public class Reader {
 
+    /**
+     * User input handler.
+     *
+     * @return Vector for neural network for classification
+     * @throws NoSuchElementException
+     */
     public static ArrayList<Double> getUserInput() throws NoSuchElementException {
         Scanner input = new Scanner(System.in);
         String line = "'missing input'";
@@ -35,13 +49,26 @@ public class Reader {
         return inVector;
     }
 
-
+    /**
+     * Read content of file.
+     *
+     * @param fileName File name
+     * @return  String with file content
+     * @throws IOException
+     */
     public static String readString(String fileName) throws IOException {
         String data = "";
         data = new String(Files.readAllBytes(Paths.get(fileName)));
         return data;
     }
 
+    /**
+     * Parse string to Dataset format. String should be in format of numbers separated by colons. Example: 1,2,3,1
+     *
+     * @param data Data string
+     * @return Return object of Dataset
+     * @throws NumberFormatException
+     */
     public static Dataset stringToDataset(String data) throws NumberFormatException{
         Dataset dataset = new Dataset();
         String[] lines;

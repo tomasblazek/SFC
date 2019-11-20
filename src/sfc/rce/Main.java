@@ -1,3 +1,8 @@
+/**
+ *  Project RCE neural network for SFC subject
+ *  Author: xblaze31
+ */
+
 package sfc.rce;
 
 import sfc.rce.io.Printer;
@@ -11,13 +16,17 @@ import java.util.NoSuchElementException;
 
 public class Main {
 
+    /**
+     * Main function of application.
+     * @param args Application parameters
+     */
     public static void main(String[] args) {
         String data = null;
         Dataset dataset = null;
 
         Arguments.argParse(args);
 
-        Net net = new Net(Arguments.maxRadius);
+        Net net = new Net(Arguments.maxRadius, Arguments.decreaseRatio);
 
         if (!Arguments.trainingFile.equals("")){
             try {

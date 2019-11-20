@@ -1,7 +1,15 @@
+/**
+ *  Project RCE neural network for SFC subject
+ *  Author: xblaze31
+ */
+
 package sfc.rce.net;
 
 import java.util.ArrayList;
 
+/**
+ * Main class of RCE neural network
+ */
 public class Net {
     private ArrayList<NeuronHidden> neuronsHidden = new ArrayList<NeuronHidden>();
     private ArrayList<NeuronOut> neuronsOut = new ArrayList<NeuronOut>();
@@ -21,6 +29,11 @@ public class Net {
     }
 
 
+    /**
+     * Run classification of validation set.
+     * @param inputVectors ArrayList of input vectors
+     * @return ArrayList of results
+     */
     public ArrayList<String> runNetMultiple(ArrayList<ArrayList<Double>> inputVectors){
         ArrayList<String> results = new ArrayList<String>();
 
@@ -30,6 +43,12 @@ public class Net {
         return results;
     }
 
+    /**
+     * Run classification of single vector input.
+     *
+     * @param inputVector Input vector
+     * @return Result of classification
+     */
     public String runNetSingle(ArrayList<Double> inputVector){
         for (NeuronOut neuronOut : neuronsOut){
             for (NeuronHidden neuronInput : neuronOut.getInputNeurons()){
@@ -43,6 +62,12 @@ public class Net {
         return null;
     }
 
+    /**
+     * Add hidden neuron to network and when need also output neuron.
+     *
+     * @param inputVector Input vector
+     * @param resultClass Result Class
+     */
     private void addHiddenNeuron (ArrayList<Double> inputVector, String resultClass){
         countOfNeuronsHidden++;
         NeuronHidden neuronHidden = new NeuronHidden();
@@ -60,6 +85,11 @@ public class Net {
         neuronOut.addInput(neuronHidden);
     }
 
+    /**
+     * Training function of RCE neural network
+     * @param in Training set
+     * @param results Results from training set
+     */
     public void trainNet(ArrayList<ArrayList<Double>> in, ArrayList<String> results){
         Boolean modif = false;
         Boolean hit = false; // Indicator of hit
@@ -104,6 +134,11 @@ public class Net {
         }
     }
 
+    /**
+     * Get output neuron.
+     * @param classResult Result class
+     * @return Output neuron
+     */
     private NeuronOut getNeuronOut(String classResult){
         for (NeuronOut neuron : neuronsOut) {
             if (neuron.getResultClass().equals(classResult)) {
@@ -113,10 +148,18 @@ public class Net {
         return null;
     }
 
+    /**
+     * Get hidden neurons.
+     * @return ArrayList of hidden neurons
+     */
     public ArrayList<NeuronHidden> getNeuronsHidden() {
         return neuronsHidden;
     }
 
+    /**
+     * Get output neurons.
+     * @return ArrayList of output neurons
+     */
     public ArrayList<NeuronOut> getNeuronsOut() {
         return neuronsOut;
     }

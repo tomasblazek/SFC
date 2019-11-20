@@ -1,13 +1,25 @@
+/**
+ *  Project RCE neural network for SFC subject
+ *  Author: xblaze31
+ */
+
 package sfc.rce;
 
 import sfc.rce.io.Printer;
 
+/**
+ * Class manage arguments of application.
+ */
 public class Arguments {
     static String trainingFile = "";
     static String validationFile = "";
     static Double maxRadius = 3.0;
-    static Double decreaseRation = 0.9;
+    static Double decreaseRatio = 0.9;
 
+    /**
+     * Parse array of arguments and set options.
+     * @param args Application parameters
+     */
     static void argParse(String[] args){
         for (int i = 0; i < args.length; i++){
             if (args[i].equals("-h")){
@@ -32,7 +44,7 @@ public class Arguments {
                         Arguments.maxRadius = Double.parseDouble(args[i + 1]);
                         break;
                     case "-r":
-                        Arguments.decreaseRation = Double.parseDouble(args[i + 1]);
+                        Arguments.decreaseRatio = Double.parseDouble(args[i + 1]);
                         break;
                 }
                 i++;
