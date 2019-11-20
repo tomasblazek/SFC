@@ -18,9 +18,10 @@ public class Arguments {
 
     /**
      * Parse array of arguments and set options.
+     *
      * @param args Application parameters
      */
-    static void argParse(String[] args){
+    public static void argParse(String[] args){
         for (int i = 0; i < args.length; i++){
             if (args[i].equals("-h")){
                 Printer.printHelp();
