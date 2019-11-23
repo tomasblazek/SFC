@@ -23,7 +23,7 @@ Spuštění a natrénování sítě na zvoleném datasetu a validačním dataset
 
     java -jar sfc-rce.jar -t dataset/balance-scale-training.data -v dataset/balance-scale-validation.data
 
-Spuštění a natrénování sítě na zvoleném datasetu a definováním vlastních parametru sítě (Maximální poloměr a zmenšovací poměr):
+Spuštění a natrénování sítě na zvoleném datasetu a definováním vlastních parametru sítě (Maximální poloměr 2 a zmenšovací poměr 0.5):
 
     java -jar sfc-rce.jar -t dataset/balance-scale-training.data -R 2 -r 0.5
 
